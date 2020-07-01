@@ -1,0 +1,47 @@
+<!-- Add Product Form -->
+<h3>Recieve BackOrder Delivery</h3>
+<form>
+    <div class="form-row mb-3">
+        <div class="col-3">
+            <input type="number" class="form-control" placeholder="BackOrderDelivery Id" id=ipbodid>
+        </div>
+    </div>
+
+    <div class="form-row mb-3">
+        <div class="col-3">
+            <input type="text" class="form-control" placeholder="License plate deliverer" id=iplicense>
+        </div>
+    </div>
+</form>
+
+<div>
+    <button type="button" class="btn btn-outline-success mb-3" onclick="markDeliveryArrived()">Mark delivery as
+        received</button>
+</div>
+
+<div class="form-row">
+    <div class="col-5">
+        <h3 class="mt-4">Delivery Overview</h3>
+    </div>
+    <!-- search balk -->
+    <div class="col" id="searchBarDelivery">
+        <div class="input-group mt-4">
+            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" 
+                placeholder="Search..." id="ipfilter" oninput="filterTable()">
+            <div class="input-group-append">
+                <select class="custom-select" name="columNames" id="columNames" onchange="filterTable()">
+                    <option value="Backorder ID">Backorder ID</option>
+                    <option value="Delivery ID">Delivery ID</option>
+                    <option value="Status">Status</option>
+                    <option value="Delivery date">Delivery date</option>
+                    <option value="License plate">License plate</option>
+                </select>
+            </div>
+        </div> 
+    </div> 
+</div>
+<p class="font-italic font-weight-lighter" id="sortTextDelivery">Click headers to sort table</p>
+<div id=deliveryTable></div>
+
+
+

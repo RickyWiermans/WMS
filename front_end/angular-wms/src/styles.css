@@ -1,0 +1,81 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* INFO: Bootstrap install: https://loiane.com/2017/08/how-to-add-bootstrap-to-an-angular-cli-project/ */
+
+/* @import "~bootstrap/dist/css/bootstrap.min.css"; */
+
+* {
+  box-sizing: border-box;
+}
+
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  position: relative;
+}
+
+.page-top-spacing {
+  height: 100px;
+}
+
+.main-container {
+  min-height: 100vh;
+  /* will cover the 100% of viewport */
+  overflow: hidden;
+  display: block;
+  position: relative;
+  padding-bottom: 60px;
+  /* height of your footer */
+}
+
+.header-img {
+  position: relative;
+  top: -55px;
+}
+
+.row-full {
+  width: 100vw;
+  position: relative;
+  margin-left: -50vw;
+  height: 100px;
+  left: 50%;
+  top: -20px;
+}
+
+.relative {
+  position: relative;
+}
+
+.thumbnail {
+  width: 100px;
+  max-height: 80px;
+}
+
+.thumbnail:hover {
+  position: absolute;
+  margin-top: -20px;
+  width: 250px;
+  max-height: 200px;
+  cursor: zoom-in;
+  transition: width 0.5s;
+}
+
+.fixedWidth {
+  width: 150px;
+}
+
+footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+#catalogTable td {
+  height: 105px;
+  vertical-align: middle;
+}

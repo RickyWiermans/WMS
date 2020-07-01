@@ -1,0 +1,53 @@
+
+    <h3>BackOrder Delivery Details</h3>
+    <div class="text-right">
+        <button id="ipDelete" type="button" class="btn btn-outline-danger" 
+            onclick="deleteDelivery()" disabled>DELETE delivery</button>
+    </div>
+  
+    <div class="row mx-sm-n1">
+        <div class="col px-sm-1">BackOrder ID:</div>
+        <div id="showBOId" class="col px-sm-1">xxx</div>
+        <div class="col px-sm-1"></div>
+        <div class="col px-sm-1"></div>
+    </div>
+    <div class="row mx-sm-n1">
+        <div class="col px-sm-1">Delivery ID:</div>
+        <div id="showDId" class="col px-sm-1">xxx</div>
+        <div class="col px-sm-1"></div>
+        <div class="col px-sm-1"></div>
+    </div>
+    <div class="row mx-sm-n1">
+        <div class="col px-sm-1">Delivery date:</div>
+        <div id="showDDate" class="col px-sm-1">xxx</div>
+        <div class="col px-sm-1"></div>
+        <div class="col px-sm-1"></div>
+    </div>
+    <div class="row mx-sm-n1">
+        <div class="col px-sm-1">Taken by employee:</div>
+        <div id="showEmployee" class="col px-sm-1">Employee X</div>
+        <div class="col px-sm-1"></div>
+        <div class="col px-sm-1"></div>
+    </div>
+    <div class="row mx-sm-n1">
+        <div class="col px-sm-1">Deviating:</div>
+        <div id="showDeviating" class="col px-sm-1">xxx</div>
+        <div class="col px-sm-1"></div>
+        <div class="col px-sm-1"></div>
+    </div>
+    <div class="row mx-sm-n1">
+        <div class="col px-sm-1">Current status:</div>
+        <div id="showStatus" class="col px-sm-1">xxx</div>
+        <div class="col px-sm-1"></div>
+        <div class="col px-sm-1"></div>
+    </div>
+
+    <br>
+    <h3>BackOrder Lines</h3>
+    <div id="deliveryDetailTable"></div>
+    <div>
+        <button id="ipcheckComplete" type="button" class="btn btn-outline-success mb-3" 
+            disabled onclick="deliveryCompleted()">Add status COMPLETE</button>
+    </div>
+    
+

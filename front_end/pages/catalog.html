@@ -1,0 +1,110 @@
+<!-- Add Product Form -->
+<h3>Add new product</h3>
+<p>Fill in the form to add a new product to the product catalog.</p>
+<form>
+    <div class="form-row mb-3">
+        <div class="col-3">
+            <input type="text" class="form-control" placeholder="Name" id="ipname">
+        </div>
+        <div class="col-6">
+
+            <div class="input-group">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input" id="ipfile" />
+                    <label id="ipfileLabel" class=" custom-file-label" for="ipfile">Choose product image</label>
+                </div>
+            </div>
+            <script>
+                $('#ipfile').on('change', function () {
+                    console.log("CHANGE");
+                    //get the file name
+                    var fileName = document.getElementById('ipfile').files[0].name;
+
+                    //replace the "Choose a file" label
+                    $(this).next('#ipfileLabel').html(fileName);
+                })
+            </script>
+
+        </div>
+
+    </div>
+
+    <div class="form-row mb-3">
+        <div class="col-3">
+            <input type="number" class="form-control" placeholder="Price" id="ipprice">
+        </div>
+        <div class="col-6">
+            <input type="number" class="form-control" placeholder="EAN Code" id="ipeanCode">
+        </div>
+        <!-- <div class="col-3">
+            <input type="number" class="form-control" placeholder="Width" id="ipwidth">
+        </div> -->
+    </div>
+
+    <!-- <div class="form-row mb-3">
+        <div class="col-3">
+            <input type="number" class="form-control" placeholder="Length" id="iplength">
+        </div>
+        <div class="col-3">
+            <input type="number" class="form-control" placeholder="Height" id="ipheight">
+        </div>
+        <div class="col-3">
+            <input type="number" class="form-control" placeholder="Weight" id="ipweight">
+        </div>
+    </div> -->
+
+    <div class="form-row mb-3">
+        <div class="col-9">
+            <input type="text" class="form-control" placeholder="Description" id="ipdescription">
+        </div>
+    </div>
+</form>
+
+
+<div>
+    <button type="button" class="btn btn-outline-success mb-3" onclick="confirmPostProduct()" id="ipaddoredit">Add
+        product to catalog</button>
+</div>
+
+<div>
+    <input type="hidden" id="idhidden">
+    <input type="hidden" id="fileDataIdhidden">
+</div>
+
+<div class="form-row">
+    <div class="col-5">
+        <h3 class="mt-4">Product catalog</h3>
+    </div>
+    <!-- search balk -->
+    <div class="col" id="searchBarCatalog">
+        <div class="input-group mt-4">
+            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" 
+                placeholder="Search..." id="ipcatalogfilter" oninput="filterCatalog()">
+            <div class="input-group-append">
+                <select class="custom-select" name="columNames" id="catalogcolumNames" onchange="filterCatalog()">
+                    <option value="Name">Name</option>
+                    <option value="Price">Price</option>
+                    <option value="eanCode">EAN Code</option>
+                    <option value="Description">Description</option>
+                </select>
+            </div>
+        </div> 
+    </div> 
+</div>
+<p class="font-italic font-weight-lighter" id="sortTextCatalog">Click headers to sort table</p>
+<div id="catalogTable"></div>
+
+<div>
+    <input type="hidden" id="idhidden">
+</div>
+
+<h3 class="mt-4">Back order</h3>
+<table id="backorderTable" class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">Product </th>
+            <th scope="col">Amount to backorder</th>
+        </tr>
+    </thead>
+</table>
+<button type="button" id="ipsendbo" class="btn btn-outline-success mb-3" onclick="sendbackorder()">Send backorder</button>

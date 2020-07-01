@@ -1,0 +1,101 @@
+
+<!-- saved from url=(0070)file:///Users/KaiHup/Desktop/wms/app/front_end/test-add-file-data.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=windows-1252"></head><body><input id="inputfile" type="file" name="inputfile"><br>
+<!-- Output Filename <input id='outputfile' type='text' name='outputfile'><br>
+Extension <input id='extension' type='text' name='extension'> -->
+
+<button onclick="confirmPostProduct()">button</button>
+
+<script>
+
+    function getFileNameWithExt(event) {
+
+        if (!event || !event.target || !event.target.files || event.target.files.length === 0) {
+            return;
+        }
+
+        const name = event.target.files[0].name;
+        const lastDot = name.lastIndexOf('.');
+
+        const fileName = name.substring(0, lastDot);
+        const ext = name.substring(lastDot + 1);
+
+        outputfile.value = fileName;
+        extension.value = ext;
+
+    }
+
+
+    function confirmPostProduct() {
+        console.log("first part");
+        var file = document.getElementById('inputfile').files[0];
+        if (file) {
+            console.log(file.size);
+            handleFileSelect(file);
+        } else {
+            console.log("no file")
+
+        }
+    }
+
+
+    function handleFileSelect(file) {
+        //var file = document.getElementById('files').files[0]; // FileList object
+        var reader = new FileReader();
+        // Read in the image file as a data URL.
+        if (file) {
+            reader.readAsBinaryString(file);
+        }
+
+        // Closure to capture the file information.
+        reader.onload = (function (theFile) {
+            return function (e) {
+                console.log("middle part");
+                var fileData = {};
+
+                const fileName = file.name;
+                const lastDot = fileName.lastIndexOf('.');
+
+                const name = fileName.substring(0, lastDot);
+                const ext = fileName.substring(lastDot + 1);
+
+                const binaryData = e.target.result;
+                //Converting Binary Data to base 64
+                const base64String = window.btoa(binaryData);
+
+
+
+                fileData.name = name;
+                fileData.extension = ext;
+                fileData.data = base64String;
+
+                // console.log("file!");
+                // console.log(fileData);
+                postFileData(fileData);
+            }
+        })(file);
+
+
+    }
+
+    function postFileData(fileData) {
+
+
+        console.log("last part")
+        console.log(fileData.data);
+
+        var xhr = new XMLHttpRequest();
+
+
+
+        xhr.onreadystatechange = function () {
+
+        };
+
+        var objJSON = JSON.stringify(fileData);
+        xhr.open("POST", "http://localhost:8082/postFileData", true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(objJSON);
+    }
+
+</script></body></html>

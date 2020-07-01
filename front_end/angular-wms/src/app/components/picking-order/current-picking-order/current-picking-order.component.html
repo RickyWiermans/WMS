@@ -1,0 +1,112 @@
+<h1>Current Picking Order</h1>
+<div class="py-2"></div>
+<div class="row">
+    <!-- ORDER DETAILS -->
+    <div class="col-4">
+        <table class="table table-sm border h-100 ">
+            <tr>
+                <th colspan="2" class="col-3">Order details</th>
+            </tr>
+            <tr>
+                <td>ID: </td>
+                <td>{{orderId}}</td>
+            </tr>
+            <tr>
+                <td>items in order: </td>
+                <td>{{orderTotalItems}}</td>
+            </tr>
+            <tr>
+                <td>Current status: </td>
+                <td>{{orderCurrentStatus}}</td>
+            </tr>
+            <tr>
+                <td>Updated at: </td>
+                <td>{{orderStatusDate}} {{orderStatusTime}}</td>
+            </tr>
+        </table>
+    </div>
+    <!-- CUSTOMER DETAILS -->
+    <div class="col-4">
+        <table class="table table-sm border h-100">
+            <tr>
+                <th colspan="2" class="col-3">Customer details</th>
+            </tr>
+            <tr>
+                <td>ID: </td>
+                <td>{{customerId}}</td>
+            </tr>
+            <tr>
+                <td>Name:</td>
+                <td>{{customerFirstName}} {{customerLastName}}</td>
+            </tr>
+            <tr>
+                <td>Adress: </td>
+                <td>{{customerAdress}}</td>
+            </tr>
+            <tr>
+                <td>Zipcode: </td>
+                <td>{{customerZipCode}}</td>
+            </tr>
+        </table>
+    </div>
+    <!-- PICKING IMAGE -->
+    <div class="col-4">
+        <img class="img-fluid overflow-hidden border" src="assets/img/picking1.jpg" />
+    </div>
+</div>
+<div class="py-2"></div>
+
+<!-- ORDER LINES FOR PICKING-->
+<table class="table img-table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">ProductId</th>
+            <th scope="col">Ordered amount</th>
+            <th scope="col">Stored in box</th>
+            <th scope="col">Pick items</th>
+            <th scope="col">Picked amount</th>
+            <th scope="col">Confirmd</th>
+
+        </tr>
+    </thead>
+    <tbody *ngFor='let orderLine of orderLineArray; index as i;'>
+        <tr>
+            <td class="font-weight-bold">{{orderLine.product.name}}</td>
+            <td>{{orderLine.amountOrdered}}</td>
+            <td>Box no</td>
+            <td>
+                <div class="addBtn{{i}}">
+                    <button id="btn{{i}}-min-one" type="button" class=" btn btn-sm btn-warning col-2 mr-2"
+                        (click)='pickItems(-1, i)'>-1</button>
+                    <button id="btn{{i}}-min-multi" type="button" class=" btn btn-sm btn-warning col-2 mr-2"
+                        (click)='pickItems(-5, i)'>-5</button>
+                    <button id="btn{{i}}-plus-one" type="button" class=" btn btn-sm btn-secondary col-2 mr-2"
+                        (click)='pickItems(5, i)'>+5</button>
+                    <button id="btn{{i}}-plus-multi" type="button" class=" btn btn-sm btn-secondary col-2 mr-2"
+                        (click)='pickItems(1, i)'>+1</button>
+                </div>
+            </td>
+
+            <td>{{orderLine.amountPicked}}</td>
+            <td>
+                <div class="fixedWidth">
+                    <button id="rowId{{i}}" [disabled]='true' type="button"
+                        class="btn btn-sm w-100 btn-outline-secondary" (click)='confirmRow(i)'>Incomplete</button>
+                </div>
+                <!-- <p [class.font-weight-bold]=this.activate>bolded</p> -->
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+<!-- SEND ORDER BUTTON -->
+<div class="row">
+    <div class="col-12">
+        <div>
+            <button id="btn-ship-order" type="button" [disabled]='true' class="btn btn-outline-secondary mb-3 col-12"
+                (click)='shipOrder'>Complete picking before shipping</button>
+        </div>
+    </div>
+</div>

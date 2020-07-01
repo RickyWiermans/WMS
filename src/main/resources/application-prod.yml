@@ -1,0 +1,12 @@
+spring:
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: update
+  datasource:
+    url: jdbc:mysql://localhost:3306/wms?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: Ricky
+    password: welkom123
+    driverClassName: com.mysql.jdbc.Driver
+server:
+  port: 9088

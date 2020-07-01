@@ -1,0 +1,85 @@
+* {
+	box-sizing: border-box;
+}
+
+*:before,
+*:after {
+	box-sizing: border-box;
+}
+
+html,
+body {
+	height: 100%;
+	position: relative;
+}
+
+.main-container {
+	min-height: 100vh;
+	/* will cover the 100% of viewport */
+	overflow: hidden;
+	display: block;
+	position: relative;
+	padding-bottom: 60px;
+	/* height of your footer */
+}
+
+.header-img {
+	position: relative;
+	top: -55px;
+}
+
+.row-full {
+	width: 100vw;
+	position: relative;
+	margin-left: -50vw;
+	height: 100px;
+	left: 50%;
+	top: -20px;
+}
+
+.relative {
+	position: relative;
+}
+
+.thumbnail {
+	width: 100px;
+	max-height: 80px;
+}
+
+.thumbnail:hover {
+	position: absolute;
+	margin-top: -20px;
+	width: 250px;
+	max-height: 200px;
+	cursor: zoom-in;
+	transition: width 0.5s;
+}
+
+footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+}
+
+#catalogTable td {
+	height: 105px;
+	vertical-align: middle;
+}
+
+
+
+/* scrollbar */
+/* .scrollbar tbody {
+    height: 400px;
+    overflow-y: auto;
+	width: 100%;
+	display: block;
+}
+.scrollbar thead, tbody, tr {
+	display: table;
+	width: 100%;
+	table-layout:fixed;
+}
+.scrollbar thead {
+    width: calc( 100% - 1em ) 
+}  */

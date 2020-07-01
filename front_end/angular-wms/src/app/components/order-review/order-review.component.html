@@ -1,0 +1,33 @@
+<h1>
+    Thanks for shopping!
+</h1>
+
+<table class='table img-table table-striped'>
+    <thead>
+        <tr>
+            <th scope='col'>Product</th>
+            <th scope='col'>Number of items</th>
+            <th scope='col'>Cost per item</th>
+            <th scope='col'>Total Price</th>
+    </thead>
+    <tbody *ngFor='let orderpart of customerOrderList'>
+        <td class='font-weight-bold'>
+                <!-- {{orderNiceLooking[i]}} -->
+               {{orderpart.product.name}} 
+        </td>
+        <td>
+                {{orderpart.amountOrdered}}
+        </td>
+        <td>
+            {{formattingPrice(orderpart.product.price)}}
+    </td>
+    <td>
+        {{formattingPrice(orderpart.price)}}
+    </td>
+        
+    </tbody>
+</table>
+
+<table>
+    <div style="border:1px solid black;"> TOTAL: {{getTotalPrice()}}</div>
+</table>

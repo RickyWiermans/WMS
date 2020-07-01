@@ -1,0 +1,54 @@
+<div class="header-img"><img src="assets/img/ecommerce-background_temp.png" style="width: 1040px" /> </div>
+
+<!-- <div [innerHTML] = "showProductsToBuy()"></div>
+
+<div *ngFor="let product of productList">Hier is een {{product.name}} voor €{{product.price}}</div> -->
+<div style="overflow-y:scroll;">
+    <table class='table img-table table-striped'>
+        <thead>
+            <tr>
+                <th scope='col'>Product</th>
+                <th scope='col'>Price</th>
+                <th scope='col'>Items</th>
+                <th scope='col'></th>
+                <th scope='col'>Remove from order</th>
+                <th scope='col'></th>
+                <th scope='col'>Items in current order</th>
+                <th scope='col'>Cost</th>
+        </thead>
+        <tbody *ngFor='let product of productList; index as i;'>
+            {{getMaxOrder(product)}}
+            <td class='font-weight-bold'>
+                {{product.name}}
+            </td>
+            <td>
+                {{formattingPrice(product.price)}}
+            </td>
+            <td>
+                <input type="number" min="0" max="{{product.inStockLeft}}" style="width: 70px" [(ngModel)]=product.amountadded>
+            </td>
+            <td>
+                <button type="button" class="btn btn-outline-secondary" (click)="customerOrderLine(product, i)">Add to</button>
+            </td>
+            <td>
+                <input type="number" min="0" max="{{product.amount}}"  style="width: 70px" [(ngModel)]=product.amountremoved>
+            </td>
+            <td>
+                <button id="rowId{{i}}" [disabled]='true' type="button" class="btn btn-outline-secondary" (click)="customerOrderLine(product, i)">Remove</button>
+            </td>
+            <td style="text-align:center">
+                {{currenInOrder(product)}}
+            </td>
+            <td>
+                {{calculatePrice(product)}}
+            </td>
+        </tbody>
+    </table>
+    <table>
+        <div style="border:1px solid black;"> TOTAL: {{getTotalPrice()}}</div>
+    </table>
+</div>
+
+<button type="button" style="background-color: forestgreen; color: black; text-align: center;" 
+class="btn btn-outline-secondary" (click)="purchaseOrder()">Purchase selected products</button>
+

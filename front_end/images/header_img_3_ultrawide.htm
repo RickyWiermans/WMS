@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<!-- saved from url=(0065)file:///Users/KaiHup/Desktop/wms/app/front_end/test-show-img.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <input id="fileInput" type="file"><br>
+    <input id="submit" type="button" onclick="previewFile()"><br>
+    <img id="theFile" src="file:///Users/KaiHup/Desktop/wms/app/front_end/test-show-img.html" height="200" alt="Image preview...">
+
+    <hr>
+    Name:
+    <input id="productName" type="text"><br>
+    File:
+    <input id="productImgFile" type="file"><br>
+    <input type="submit" value="Click me" onclick="postFileData()">
+
+
+<script>
+
+    function postFileData() {
+
+        const name = document.getElementById("productName").value;
+        console.log(name);
+        const file = document.querySelector('#productImgFile').files[0];
+        console.log(file);
+        const reader = new FileReader();
+
+        reader.addEventListener("load", function () {
+            // convert image file to base64 string
+            console.log(reader.result);
+            // preview.src = reader.result;
+        }, false);
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+
+
+
+        /* var maxWeightp =
+
+        // var deletep = document.getElementById("ipdelete").value;
+
+        var theObject = {};
+        // theObject.product = {};
+
+        theObject.maxProductItems = maxProductItemsp;
+        theObject.length = lengthp;
+        theObject.width = widthp;
+        theObject.height = heightp;
+        theObject.maxWeight = maxWeightp;
+        // theObject.edit = editp;
+        // theObject.delete = deletep ;
+
+        var objJSON = JSON.stringify(theObject);
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function () {
+            console.log("The Box is saved");
+            showBoxes();
+        };
+        xhr.open("POST", "http://localhost:8082/newbox/" + productp, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
+        xhr.send(objJSON);
+        document.getElementById("boxesTable"); */
+    }
+
+
+    function previewFile() {
+        const preview = document.querySelector('#theFile');
+        const file = document.querySelector('#fileInput').files[0];
+        const reader = new FileReader();
+
+        reader.addEventListener("load", function () {
+            // convert image file to base64 string
+            console.log(reader.result);
+            // preview.src = reader.result;
+        }, false);
+
+        if (file) {
+            reader.readAsDataURL(file);
+        }
+    }
+
+</script>
+
+</body></html>

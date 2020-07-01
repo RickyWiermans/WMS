@@ -1,0 +1,157 @@
+<p></p>
+<h1>Current Picking Order</h1>
+<div class="py-2"></div>
+<div class="row">
+    <!-- ORDER DETAILS -->
+    <div class="col-4">
+        <table class="table table-sm border h-100 ">
+            <tr>
+                <th colspan="2" class="col-3">Order details</th>
+            </tr>
+            <tr>
+                <td>ID: </td>
+                <td>{{order.id}}</td>
+            </tr>
+            <tr>
+                <td>items in order: </td>
+                <td>{{order.items}}</td>
+            </tr>
+            <tr>
+                <td>Current status: </td>
+                <td>{{order.status}}</td>
+            </tr>
+            <tr>
+                <td>Updated at: </td>
+                <td>{{order.statusDate}} {{order.statusTime}}</td>
+            </tr>
+        </table>
+    </div>
+    <!-- CUSTOMER DETAILS -->
+    <div class="col-4">
+        <table class="table table-sm border h-100">
+            <tr>
+                <th colspan="2" class="col-3">Customer details</th>
+            </tr>
+            <tr>
+                <td>ID: </td>
+                <td>{{customer.id}}</td>
+            </tr>
+            <tr>
+                <td>Name:</td>
+                <td>{{customer.firstName}} {{customer.lastName}}</td>
+            </tr>
+            <tr>
+                <td>Adress: </td>
+                <td>{{customer.address}}</td>
+            </tr>
+            <tr>
+                <td>Zipcode: </td>
+                <td>{{customer.zipCode}}</td>
+            </tr>
+        </table>
+    </div>
+    <!-- PICKING IMAGE -->
+    <div class="col-4">
+        <img class="img-fluid overflow-hidden border" src="assets/img/picking1.jpg" />
+    </div>
+</div>
+<div class="py-2"></div>
+
+<!-- ORDER LINES FOR PICKING-->
+<table class="table img-table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">ProductId</th>
+            <th scope="col">Stored in Box(es)</th>
+            <th scope="col">Ordered amount</th>
+            <th scope="col">Pick items</th>
+            <th scope="col">Picked amount</th>
+            <th scope="col">Confirmd</th>
+
+        </tr>
+    </thead>
+    <tbody *ngFor='let pickingLine of pickingLineArray; index as i;'>
+
+        <!--   <div [ngClass]="(pickingLine.customerOrderLine.pickingConfirmed)?'text-success':'text-danger'">TEST</div>
+        <div *ngIf="pickingLine.customerOrderLine.pickingConfirmed">COCO</div> -->
+
+        <tr *ngIf='pickingLine.customerOrderLine.pickingConfirmed; else unconfirmedRow'>
+            <td class="font-weight-bold">{{pickingLine.customerOrderLine.product.name}}</td>
+            <td>
+                <div class="float-left btn btn-sm btn-outline-primary align-middle text-center mr-2 disabled"
+                    *ngFor='let entry of pickingLine.boxQuantityMap | keyvalue'>
+                    B{{entry.key}}<br>{{entry.value}} items
+                </div>
+            </td>
+            <td>{{pickingLine.customerOrderLine.amountOrdered}}</td>
+            <td>
+                <div class="addBtn{{i}}">
+                    <button id="btn{{i}}-min-one" type="button" class=" btn btn-sm btn-outline-warning col-2 mr-2"
+                        disabled>-1</button>
+                    <button id="btn{{i}}-min-multi" type="button" class=" btn btn-sm btn-outline-warning col-2 mr-2"
+                        disabled>-5</button>
+                    <button id="btn{{i}}-plus-one" type="button" class=" btn btn-sm btn-outline-secondary col-2 mr-2"
+                        disabled>+5</button>
+                    <button id="btn{{i}}-plus-multi" type="button" class=" btn btn-sm btn-outline-secondary col-2 mr-2"
+                        disabled>+1</button>
+                </div>
+            </td>
+
+            <td>{{pickingLine.customerOrderLine.amountPicked}}</td>
+            <td>
+                <div class="fixedWidth">
+                    <button id="rowId{{i}}" [disabled]='true' type="button"
+                        class="btn btn-sm w-100 btn-outline-success">√ Cinfirmed</button>
+                </div>
+                <!-- <p [class.font-weight-bold]=this.activate>bolded</p> -->
+            </td>
+        </tr>
+
+        <ng-template #unconfirmedRow>
+            <tr>
+                <td class="font-weight-bold">{{pickingLine.customerOrderLine.product.name}}</td>
+                <td>
+                    <div class="float-left btn btn-sm btn-outline-primary align-middle text-center mr-2 disabled"
+                        *ngFor='let entry of pickingLine.boxQuantityMap | keyvalue'>
+                        B{{entry.key}}<br>{{entry.value}} items
+                    </div>
+                </td>
+                <td>{{pickingLine.customerOrderLine.amountOrdered}}</td>
+                <td>
+                    <div class="addBtn{{i}}">
+                        <button id="btn{{i}}-min-one" type="button" class=" btn btn-sm btn-warning col-2 mr-2"
+                            (click)='pickItems(-1, pickingLine, i)'>-1</button>
+                        <button id="btn{{i}}-min-multi" type="button" class=" btn btn-sm btn-warning col-2 mr-2"
+                            (click)='pickItems(-5, pickingLine, i)'>-5</button>
+                        <button id="btn{{i}}-plus-one" type="button" class=" btn btn-sm btn-secondary col-2 mr-2"
+                            (click)='pickItems(5, pickingLine, i)'>+5</button>
+                        <button id="btn{{i}}-plus-multi" type="button" class=" btn btn-sm btn-secondary col-2 mr-2"
+                            (click)='pickItems(1, pickingLine, i)'>+1</button>
+                    </div>
+                </td>
+
+                <td>{{pickingLine.customerOrderLine.amountPicked}}</td>
+                <td>
+                    <div class="fixedWidth">
+                        <button id="rowId{{i}}" [disabled]='true' type="button"
+                            class="btn btn-sm w-100 btn-outline-secondary"
+                            (click)='confirmRow(pickingLine, i)'>Incomplete</button>
+                    </div>
+                    <!-- <p [class.font-weight-bold]=this.activate>bolded</p> -->
+                </td>
+            </tr>
+        </ng-template>
+
+
+    </tbody>
+</table>
+
+<!-- SEND ORDER BUTTON -->
+<div class="row">
+    <div class="col-12">
+        <div>
+            <button id="btn-ship-order" type="button" [disabled]='true' class="btn btn-outline-secondary mb-3 col-12"
+                (click)='shipOrder()'>Complete picking before shipping</button>
+        </div>
+    </div>
+</div>

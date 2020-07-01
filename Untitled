@@ -1,0 +1,59 @@
+box1.inhoud = 5
+box2.inhoud = 10
+
+besteld : 7
+
+for (box : boxes) {
+  if (besteld > box.inhoud) {
+      for (alle items in box) {
+        itemMetBoxId -> item.setStatus(READY_FOR_TRANSIT)
+        itemMetBoxId -> item.setBox(null);
+        besteld -= 1
+      }
+
+  } else {
+    for (besteld items in box) {
+      itemMetBoxId -> item.setStatus(READY_FOR_TRANSIT)
+      itemMetBoxId -> item.setBox(null);
+      besteld -= 1
+    }
+  }
+}
+
+/* BOX1 */
+for (box1 : boxes) {
+  if (7 > 5) { // true
+    for ( 5 items) {
+      -- setStatusReady
+      -- verwijderboxid
+      besteld -= 1 // nu 6
+      -- setStatusReady
+      -- verwijderboxid
+      besteld -= 1 // nu 5
+      -- setStatusReady
+      -- verwijderboxid
+      besteld -= 1 // nu 4
+      -- setStatusReady
+      -- verwijderboxid
+      besteld -= 1 // nu 3
+      -- setStatusReady
+      -- verwijderboxid
+      besteld -= 1 // nu 2
+    }
+  }
+}
+
+for (box2 : boxes) {
+ if ( 2 > 10) { // false
+
+ } else {
+    for (2 items in box) {
+    -- setStatusReady
+    -- verwijderboxid
+    besteld -= 1 // nu 1
+    -- setStatusReady
+    -- verwijderboxid
+    besteld -= 1 // nu 0
+    }
+ }
+}

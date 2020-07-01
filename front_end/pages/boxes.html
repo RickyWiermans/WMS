@@ -1,0 +1,81 @@
+<!-- Add Product Form -->
+<h3>Add new Box</h3>
+<p>Fill in the form to add a new Box</p>
+<!-- FORM -->
+<form>
+    <!-- row 1 -->
+    <div class="form-row mb-3">
+        <!-- products dropdown -->
+        <div class="col-3">
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="ipproduct">Product</label>
+                </div>
+                <select class="custom-select" id="ipproduct">
+                    <option selected> Choose...</option>
+
+
+                </select>
+
+            </div>
+        </div>
+        <!-- max products -->
+        <div class="col-3">
+            <!-- <input type="text" class="form-control" placeholder="Lenght" id=iplength> -->
+        </div>
+        <!-- max weight -->
+        <div class="col-3">
+            <!-- <input type="text" class="form-control" placeholder="Max Weight" id=ipmaxWeight> -->
+        </div>
+    </div>
+
+    <!-- row 2 -->
+    <div class="form-row mb-3">
+        <!-- length -->
+        <div class="col-3">
+            <input type="text" class="form-control" placeholder="Max Product Items" id=ipmaxProductItems>
+        </div>
+        <!-- width -->
+        <div class="col-3">
+            <!-- <input type="text" class="form-control" placeholder="Width" id=ipwidth> -->
+        </div>
+        <!-- height -->
+        <div class="col-3">
+            <!-- <input type="text" class="form-control" placeholder="Height" id=ipheight> -->
+        </div>
+
+    </div>
+
+    <!-- row 3 -->
+    <div class="form-row mb-3">
+        <div class="col-3">
+            <input type="button" class="form-control btn btn-outline-success mb-3" value="Add new Box"
+                onclick="postBox();"></input>
+        </div>
+    </div>
+</form>
+
+
+
+<div class="form-row">
+    <div class="col-5">
+        <h3 class="mt-4">Boxes Overview</h3>
+    </div>
+    <!-- search balk -->
+    <div class="col" id="searchBarBox">
+        <div class="input-group mt-4">
+            <input type="text" class="form-control" aria-label="Text input with segmented dropdown button" 
+                placeholder="Search..." id="ipboxfilter" oninput="filterBoxTable()">
+            <div class="input-group-append">
+                <select class="custom-select" name="columNames" id="boxcolumNames" onchange="filterBoxTable()">
+                    <option value="Box ID">Box ID</option>
+                    <option value="Product">Product</option>
+                    <!-- <option value="Max items">Max items</option> -->
+                </select>
+            </div>
+        </div> 
+    </div> 
+</div>
+<p class="font-italic font-weight-lighter" id="sortTextBox">Click headers to sort table</p>
+<div id=boxesTable></div>
+<!-- style="max-height:400px; overflow-y:auto;" -->
